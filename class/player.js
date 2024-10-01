@@ -1,3 +1,5 @@
+let {Food} = require("./food.js")
+
 class Player {
 
     constructor(name, startingRoom) {
@@ -36,7 +38,7 @@ class Player {
         let item = this.currentRoom.getItemByName(itemName);
         let i = this.currentRoom.items.indexOf(item);
         this.items.push(item);
-        this.currentRoom.items.splice(i, 1)
+        this.currentRoom.items.splice(i)
 
     }
 
@@ -44,12 +46,16 @@ class Player {
 
         let item = this.getItemByName(itemName);
         let i = this.items.indexOf(item);
-        this.items.splice(i, 1);
+        this.items.splice(i);
         this.currentRoom.items.push(item)
     }
 
     eatItem(itemName) {
-        // Fill this in
+        let item = this.getItemByName(itemName);
+        if (item instanceof Food) {
+            let i = this.items.indexOf(item);
+            this.items.splice(i)
+        }
 
     }
 
